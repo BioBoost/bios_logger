@@ -16,6 +16,7 @@ namespace BiosLogger {
 
     public:
       static std::string level_to_string(LogLevel level);
+      static std::string get_current_timestamp(void);
 
   };
 
