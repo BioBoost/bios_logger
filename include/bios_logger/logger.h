@@ -7,14 +7,19 @@
 
 namespace BiosLogger {
 
-  class Logger {
+  #define DoLog Logger::get_instance()
+
+  class Logger final {
 
     private:
       std::vector<LogWriter *> writers;
 
     public:
-      Logger(void);
-      virtual ~Logger(void);
+      static Logger& get_instance();
+
+    private:
+      Logger(void);   // Make constructor private
+      ~Logger(void);
 
     public:
       void register_log_writer(LogWriter * writer);
@@ -28,6 +33,18 @@ namespace BiosLogger {
 
     private:
       void send_message_to_all_writers(std::string message, LogLevel level);
+
+      // Dont forget to declare these two. You want to make sure they
+      // are unacceptable otherwise you may accidentally get copies of
+      // your singleton appearing.
+    public:
+      Logger(Logger const&)          = delete;
+      void operator=(Logger const&)  = delete;
+      // Note: Scott Meyers mentions in his Effective Modern
+      //       C++ book, that deleted functions should generally
+      //       be public as it results in better error messages
+      //       due to the compilers behavior to check accessibility
+      //       before deleted status
 
   };
 };

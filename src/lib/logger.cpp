@@ -1,10 +1,21 @@
 #include "../../include/bios_logger/logger.h"
 
+#include <iostream>
+
 namespace BiosLogger {
+
+  Logger& Logger::get_instance() {
+    static Logger instance;   // Guaranteed to be destroyed.
+    return instance;
+  }
 
   Logger::Logger(void) { }
 
-  Logger::~Logger(void) { }
+  Logger::~Logger(void) {
+    for (unsigned int i = 0; i < writers.size(); i++) {
+      delete writers[i];
+    }
+  }
 
   void Logger::register_log_writer(LogWriter * writer) {
     writers.push_back(writer);

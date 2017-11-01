@@ -4,16 +4,20 @@
 ## Example
 
 ```C++
-#include "lib/logger/logger.h"
-#include "lib/logger/log_writers/terminal_logger.h"
+#include "../include/bios_logger/logger.h"
+#include "../include/bios_logger/log_writers/terminal_log_writer.h"
+
+#include <unistd.h>
+
+using namespace BiosLogger;
 
 int main(void)
 {
-    BiosLogger::Logger * logger = new BiosLogger::Logger();
-    logger->register_log_writer(new BiosLogger::TerminalLogger());
-    logger->info("Its happening! Skynet has awoken.");
-
-    delete logger;
+    DoLog.register_log_writer(new TerminalLogWriter(logINFO));
+    DoLog.register_log_writer(new TerminalLogWriter(logERROR));
+    DoLog.error("Its happening! Skynet has awoken.");
+    sleep(1);
+    DoLog.info("Never mind, it was a pokemon.");
 
     return 0;
 }

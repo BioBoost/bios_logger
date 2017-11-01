@@ -7,7 +7,9 @@ namespace BiosLogger {
     formatter = new LogFormatter();     // Basic formatter
   }
 
-  LogWriter::~LogWriter(void) { }
+  LogWriter::~LogWriter(void) {
+    delete formatter;
+  }
 
   void LogWriter::set_log_level(LogLevel level) {
     this->logLevel = level;
@@ -20,6 +22,7 @@ namespace BiosLogger {
   }
 
   void LogWriter::register_log_formatter(LogFormatter * formatter) {
+    delete this->formatter;
     this->formatter = formatter;
   }
 
