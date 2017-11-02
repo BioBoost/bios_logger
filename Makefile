@@ -10,15 +10,19 @@ CFLAGS=-c -Wall -std=c++11 -fPIC
 # LDFLAGS=
 
 # Libraries
-LIBS=-lc
+LIBS=-lc -lpthread -lrestclient-cpp
 
 # Name of executable output
-TARGET=bioslogger.so.1
-VERSION=bioslogger.so.1.0.0
+LIBRARY=libbioslogger.so
+TARGET=$(LIBRARY).1
+VERSION=$(LIBRARY).1.1.0
 SRCDIR=src
 BUILDDIR=bin
 
 OBJS := $(patsubst %.cpp,%.o,$(shell find $(SRCDIR) -name '*.cpp'))
+
+# The .PHONY rule means that examples is not a file that needs to be built
+.PHONY: examples
 
 all: makebuildir $(TARGET)
 
@@ -37,3 +41,15 @@ clean :
 
 makebuildir:
 	mkdir -p $(BUILDDIR)
+
+install:
+	rm -rf /usr/local/include/bios_logger
+	cp -r include/bios_logger /usr/local/include
+	cp $(BUILDDIR)/$(VERSION) /usr/local/lib
+	ln -f -s /usr/local/lib/$(VERSION) /usr/local/lib/$(LIBRARY)
+	ln -f -s /usr/local/lib/$(VERSION) /usr/local/lib/$(TARGET)
+	ldconfig
+
+examples:
+	$(MAKE) -C examples
+		# The -C flag indicates a change in directory (equivalent to running `cd examples` before calling make).
