@@ -1,5 +1,6 @@
 #include <bios_logger/logger.h>
 #include <bios_logger/writers/terminal_log_writer.h>
+#include <bios_logger/formatters/json_log_formatter.h>
 
 #include <unistd.h>
 
@@ -7,11 +8,13 @@ using namespace BiosLogger;
 
 int main(void)
 {
-    DoLog.register_log_writer(new TerminalLogWriter(logINFO));
-    DoLog.register_log_writer(new TerminalLogWriter(logERROR));
-    DoLog.error("Its happening! Skynet has awoken.");
-    sleep(1);
-    DoLog.info("Never mind, it was a pokemon.");
+  TerminalLogWriter * jsonTerminalLogger = new TerminalLogWriter(logINFO);
+  jsonTerminalLogger->register_log_formatter(new JsonLogFormatter());
 
-    return 0;
+  DoLog.register_log_writer(jsonTerminalLogger);
+  DoLog.error("Its happening! Skynet has awoken.");
+  sleep(1);
+  DoLog.info("Never mind, it was a pokemon.");
+
+  return 0;
 }

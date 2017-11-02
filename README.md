@@ -48,3 +48,7 @@ cd bios_logger
 make
 sudo make install
 ```
+
+## More info on Compilation
+
+Checkout http://www.yolinux.com/TUTORIALS/LibraryArchives-StaticAndDynamic.html
