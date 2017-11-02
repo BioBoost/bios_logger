@@ -3,14 +3,6 @@
 
 ## Example
 
-```C++
-#include "../include/bios_logger/logger.h"
-#include "../include/bios_logger/writers/terminal_log_writer.h"
-
-#include <unistd.h>
-
-using namespace BiosLogger;
-
 Check out the examples subdir.
 
 Making the examples:
@@ -34,7 +26,10 @@ libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fe705e49000)
 
 ## Dependencies
 
-None for the moment
+Depends on the thread_safe library: https://github.com/BioBoost/thread_safe
+
+* [Install JSON For Modern C++](docs/json_for_modern_cpp.md)
+* [Install Rest Client for C++](docs/restclient-cpp.md)
 
 ## Compilation and installation
 
