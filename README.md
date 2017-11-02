@@ -5,7 +5,7 @@
 
 ```C++
 #include "../include/bios_logger/logger.h"
-#include "../include/bios_logger/log_writers/terminal_log_writer.h"
+#include "../include/bios_logger/writers/terminal_log_writer.h"
 
 #include <unistd.h>
 
