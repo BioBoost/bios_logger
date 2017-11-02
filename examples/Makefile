@@ -4,7 +4,6 @@ CC=$(CCPREFIX)g++
 
 # Compiler flags
 CFLAGS=-Wall -std=c++11
-    # -c: Compile or assemble the source files, but do not link. The linking stage simply is not done. The ultimate output is in the form of an object file for each source file.
     # -Wall: This enables all the warnings about constructions that some users consider questionable, and that are easy to avoid (or modify to prevent the warning), even in conjunction with macros.
 
 # LDFLAGS=
@@ -12,5 +11,20 @@ CFLAGS=-Wall -std=c++11
 # Libraries
 LIBS=-lbioslogger
 
-all:
-	$(CC) $(CFLAGS) $(LIBS) json_logging.cpp -o json_logging
+# Sources and executables
+SRCDIR=.
+BUILDDIR=../bin/examples
+
+SOURCE_FILES := $(shell find $(SRCDIR) -name '*.cpp')
+EXECUTABLES := $(patsubst %.cpp,%,$(shell find $(SRCDIR) -name '*.cpp'))
+
+all: makebuildir $(EXECUTABLES)
+
+% : %.cpp
+	$(CC) $(CFLAGS) $(LDFLAGS) $< -o $(BUILDDIR)/$@ $(LIBS)
+
+clean :
+	rm -rf $(BUILDDIR)
+
+makebuildir:
+	mkdir -p $(BUILDDIR)

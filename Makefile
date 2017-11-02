@@ -52,4 +52,4 @@ install:
 
 examples:
 	$(MAKE) -C examples
-		# The -C flag indicates a change in directory (equivalent to running `cd examples` before calling make).
+# The -C flag indicates a change in directory (equivalent to running `cd examples` before calling make).
