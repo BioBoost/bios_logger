@@ -12,6 +12,7 @@ sudo apt-get install libcurl4-gnutls-dev
 sudo su
 cd /usr/local/src
 git clone https://github.com/mrtazz/restclient-cpp.git
+cd restclient-cpp
 ./autogen.sh
 ./configure
 make install
