@@ -3,7 +3,7 @@ See https://github.com/mrtazz/restclient-cpp
 ## Dependencies
 
 ```shell
-sudo apt-get install libcurl4-gnutls-dev
+sudo apt-get update && sudo apt-get install git build-essential autoconf automake libtool libcurl4-gnutls-dev
 ```
 
 ## Install
