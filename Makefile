@@ -15,7 +15,7 @@ LIBS=-lc -lpthread -lrestclient-cpp
 # Name of executable output
 LIBRARY=libbioslogger.so
 TARGET=$(LIBRARY).1
-VERSION=$(LIBRARY).1.1.0
+VERSION=$(LIBRARY).1.1.1
 SRCDIR=src
 BUILDDIR=bin
 
