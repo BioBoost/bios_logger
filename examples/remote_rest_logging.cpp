@@ -1,7 +1,4 @@
-#include <bios_logger/logger.h>
-#include <bios_logger/writers/terminal_log_writer.h>
-#include <bios_logger/writers/remote_rest_log_writer.h>
-
+#include <bios_logger/bios_logger.h>
 #include <unistd.h>
 
 using namespace BiosLogger;
